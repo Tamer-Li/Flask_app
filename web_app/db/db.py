@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-from app.config.config import Config
+from web_app.config.config import Config
 
 
 def get_db_connection():

@@ -4,9 +4,9 @@ from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from app.auth.forms import LoginForm, RegistrationForm
-from app.db.dao import UserDAO
-from app.db.models import User
+from web_app.auth.forms import LoginForm, RegistrationForm
+from web_app.db.dao import UserDAO
+from web_app.db.models import User
 
 auth_bp = Blueprint('auth', __name__)
 

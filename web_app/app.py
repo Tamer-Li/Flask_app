@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_login import LoginManager
 
-from app.config.config import Config
+from web_app.config.config import Config
 
 login_manager = LoginManager()
 

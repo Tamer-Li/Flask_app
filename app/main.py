@@ -12,5 +12,3 @@ app.config.from_object(Config)
 
 mongo.init_app(app)
 login_manager.init_app(app)
-
-

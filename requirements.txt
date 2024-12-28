@@ -1,0 +1,6 @@
+flask
+Flask-PyMongo
+flask-login
+flask-wtf
+werkzeug
+python-dotenv

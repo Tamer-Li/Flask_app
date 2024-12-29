@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from web_app.db.db import Base
+from web_app.db.database import Base
 
 
 class User(Base):

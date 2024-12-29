@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from web_app.db.models import User, Page, Access
-from web_app.db.db import get_db_connection
+from web_app.db.database import get_db_connection
 
 
 class UserDAO:

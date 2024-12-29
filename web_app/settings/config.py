@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 
 
-load_dotenv('../../.env')
+load_dotenv('../.env')
 
 
 class Config:
@@ -10,4 +10,7 @@ class Config:
     MONGO_DATABASE_NAME = os.getenv('MONGO_DATABASE_NAME')
     SECRET_KEY = os.getenv('SECRET_KEY')
     HASH_ALGORITHM = os.getenv('HASH_ALGORITHM')
-    FLASK_APP = os.getenv('FLASK_APP')
+
+
+config = Config()
+print(config)

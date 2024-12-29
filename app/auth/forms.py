@@ -5,15 +5,15 @@ from wtforms.validators import DataRequired, Email, EqualTo
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    user_name = StringField('user_name', validators=[DataRequired()])
+    password = PasswordField('password', validators=[DataRequired()])
     submit = SubmitField('Login')
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    user_name = StringField('user_name', validators=[DataRequired()])
+    email = StringField('email', validators=[DataRequired(), Email()])
+    password = PasswordField('password', validators=[DataRequired()])
     confirm_password = PasswordField(
         'Confirm Password',
         validators=[DataRequired(), EqualTo('password')]
@@ -22,13 +22,13 @@ class RegistrationForm(FlaskForm):
 
 
 class PageForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    content = TextAreaField('Content', validators=[DataRequired()])
+    title = StringField('title', validators=[DataRequired()])
+    description = TextAreaField('description', validators=[DataRequired()])
     submit = SubmitField('Save')
 
 
 class UploadFileForm(FlaskForm):
-    file = FileField('File', validators=[DataRequired()])
+    file = FileField('file', validators=[DataRequired()])
     submit = SubmitField('Upload')
 
 

@@ -1,54 +1,44 @@
 from datetime import datetime
 
+from app.db.db import Base
 
-class User:
+
+class User(Base):
+    document_name = 'users'
+
     def __init__(
             self,
-            user_id,
-            user_name,
-            password,
-            email,
-            is_active=True,
-            signup_time=None,
-            last_visit=None,
-            account_type=3,
-            avatar=None
+            user_id: int,
+            user_name: str,
+            password: str,
+            email: str,
+            is_active: bool = True,
+            signup_time: datetime = None,
+            last_visit: datetime = None,
+            account_type: int = 3,
+            avatar: str = None
     ):
-        self.user_id = user_id
-        self.user_name = user_name
-        self.password = password
-        self.email = email
-        self.is_active = is_active
-        self.signup_time = signup_time or datetime.utcnow()
-        self.last_visit = last_visit or datetime.utcnow()
-        self.account_type = account_type
-        self.avatar = avatar
-
-    def check_password(self, password):
-        return self.password, password
-
-    def get_account_status(self):
-        if not self.is_active and self.last_visit:
-            return 4
-        delta = (datetime.utcnow() - self.last_visit).days
-        if delta < 8:
-            return 1
-        elif 7 < delta < 31:
-            return 2
-        else:
-            return 3
+        self._user_id = user_id
+        self._user_name = user_name
+        self._password = password
+        self._email = email
+        self._is_active = is_active
+        self._signup_time = signup_time or datetime.utcnow()
+        self._last_visit = last_visit or datetime.utcnow()
+        self._account_type = account_type
+        self._avatar = avatar
 
     def to_dict(self):
         return {
-            "user_id": self.user_id,
-            "user_name": self.user_name,
-            "password": self.password,
-            "email": self.email,
-            "is_active": self.is_active,
-            "signup_time": self.signup_time,
-            "last_visit": self.last_visit,
-            "account_type": self.account_type,
-            "avatar": self.avatar
+            "user_id": self._user_id,
+            "user_name": self._user_name,
+            "password": self._password,
+            "email": self._email,
+            "is_active": self._is_active,
+            "signup_time": self._signup_time,
+            "last_visit": self._last_visit,
+            "account_type": self._account_type,
+            "avatar": self._avatar
         }
 
     @staticmethod
@@ -65,38 +55,52 @@ class User:
             avatar=data.get("avatar")
         )
 
+    @classmethod
+    def get_account_status(self):
+        if not self._is_active and self._last_visit:
+            return 4
+        delta = (datetime.utcnow() - self._last_visit).days
+        if delta < 8:
+            return 1
+        elif 7 < delta < 31:
+            return 2
+        else:
+            return 3
 
-class Page:
+
+class Page(Base):
+    document_name = 'pages'
+
     def __init__(
             self,
-            page_id,
-            owner_id,
-            tag,
-            title,
-            description=None,
-            keywords=None,
-            body=None,
-            files=None
+            page_id: int,
+            owner_id: int,
+            tag: str,
+            title: str,
+            description: str = None,
+            keywords: str = None,
+            body: str = None,
+            files: list[str] = None
     ):
-        self.page_id = page_id
-        self.owner_id = owner_id
-        self.tag = tag
-        self.title = title
-        self.description = description
-        self.keywords = keywords
-        self.body = body
-        self.files = files or []
+        self._page_id = page_id
+        self._owner_id = owner_id
+        self._tag = tag
+        self._title = title
+        self._description = description
+        self._keywords = keywords
+        self._body = body
+        self._files = files or []
 
     def to_dict(self):
         return {
-            "page_id": self.page_id,
-            "owner_id": self.owner_id,
-            "tag": self.tag,
-            "title": self.title,
-            "description": self.description,
-            "keywords": self.keywords,
-            "body": self.body,
-            "files": self.files
+            "page_id": self._page_id,
+            "owner_id": self._owner_id,
+            "tag": self._tag,
+            "title": self._title,
+            "description": self._description,
+            "keywords": self._keywords,
+            "body": self._body,
+            "files": self._files
         }
 
     @staticmethod
@@ -113,19 +117,27 @@ class Page:
         )
 
 
-class Access:
-    def __init__(self, acl_id, page_id, privilege, user_list):
-        self.acl_id = acl_id
-        self.page_id = page_id
-        self.privilege = privilege
-        self.user_list = user_list
+class Access(Base):
+    document_name = 'access'
+
+    def __init__(
+            self,
+            acl_id: int,
+            page_id: int,
+            privilege: str,
+            user_list: list[int]
+    ):
+        self._acl_id = acl_id
+        self._page_id = page_id
+        self._privilege = privilege
+        self._user_list = user_list
 
     def to_dict(self):
         return {
-            "acl_id": self.acl_id,
-            "page_id": self.page_id,
-            "privilege": self.privilege,
-            "list": self.user_list
+            "acl_id": self._acl_id,
+            "page_id": self._page_id,
+            "privilege": self._privilege,
+            "list": self._user_list
         }
 
     @staticmethod

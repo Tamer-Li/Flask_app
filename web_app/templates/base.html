@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Электронный архив{% endblock %}</title>
+    <title>{% block title %}ElArch{% endblock %}</title>
     <link rel="icon" href="{{ url_for('static', filename='img/icon.svg') }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
-        <h1 class="header__title">Электронный архив</h1>
+        <h1 class="header__title">Электронный архив ElArch</h1>
     </header>
     <main class="main">
         {% block content %}{% endblock %}
     </main>
     <footer class="footer">
         <p class="footer__text">
-            &copy; 2023 Электронный архив | 
+            &copy; 2023 Электронный архив ElArch | 
             <span class="developer-info">
                 <img src="{{ url_for('static', filename='img/github_icon.svg') }}" alt="GitHub Icon" class="github-icon">
                 Developer <a href="https://github.com/Tamer-Li/Flask_app" target="_blank" class="footer__link">Tamer_Li</a>

@@ -13,7 +13,7 @@ services:
       - my_network
 
   web:
-    build: .
+    build: ./backend
     container_name: my-flask-app
     ports:
       - "5000:5000"
@@ -26,7 +26,7 @@ services:
       - MONGO_URI=mongodb://root:example@mongodb:27017/
     networks:
       - my_network
-    command: python web_app/app.py --host=0.0.0.0 port=5000
+    command: python backend/app.py --host=0.0.0.0 port=5000
 
 networks:
   my_network:

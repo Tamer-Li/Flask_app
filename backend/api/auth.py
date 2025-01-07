@@ -26,8 +26,8 @@ def login(
             }), 400
 
         user_data = user.to_dict()
-        if check_password_hash(user_data['password'] == password_check):
-            return jsonify(user_data), 201
+        if check_password_hash(user_data['password'], password_check):
+            return jsonify(user_data), 200
 
         return jsonify({
             "error": "Fail"
@@ -92,7 +92,7 @@ def register():
         )
         result = u.insert_user(new_user)
 
-        return jsonify({result}), 201
+        return jsonify({result}), 200
 
     except Exception as e:
         return jsonify({
@@ -179,7 +179,7 @@ def admin_reg():
             account_type=1,
         )
         u.insert_user(new_user)
-        return jsonify({"result": "Success"}), 201
+        return jsonify({"result": "Success"}), 200
 
     except Exception as e:
         return jsonify({

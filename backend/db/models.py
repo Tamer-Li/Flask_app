@@ -1,9 +1,7 @@
 from datetime import datetime
 
-from web_app.db.database import Base
 
-
-class User(Base):
+class User():
     document_name = 'users'
 
     def __init__(
@@ -13,10 +11,10 @@ class User(Base):
             password: str,
             email: str,
             is_active: bool = True,
-            signup_time: datetime = None,
-            last_visit: datetime = None,
+            signup_time: datetime = datetime.utcnow(),
+            last_visit: datetime = datetime.utcnow(),
             account_type: int = 3,
-            avatar: str = None
+            avatar: str = ""
     ):
         self._user_id = user_id
         self._user_name = user_name
@@ -48,11 +46,11 @@ class User(Base):
             user_name=data["user_name"],
             password=data["password"],
             email=data["email"],
-            is_active=data["is_active"],
-            signup_time=data["signup_time"],
-            last_visit=data["last_visit"],
+            is_active=data.get("is_active", True),
+            signup_time=data.get("signup_time", datetime.utcnow()),
+            last_visit=data.get("last_visit", datetime.utcnow()),
             account_type=data.get("account_type", 3),
-            avatar=data.get("avatar")
+            avatar=data.get("avatar", "")
         )
 
     @classmethod
@@ -68,7 +66,7 @@ class User(Base):
             return 3
 
 
-class Page(Base):
+class Page():
     document_name = 'pages'
 
     def __init__(
@@ -110,14 +108,14 @@ class Page(Base):
             owner_id=data["owner_id"],
             tag=data["tag"],
             title=data["title"],
-            description=data.get("description"),
+            description=data.get("description", "Null"),
             keywords=data.get("keywords"),
             body=data.get("body"),
             files=data.get("files", [])
         )
 
 
-class Access(Base):
+class Access():
     document_name = 'access'
 
     def __init__(

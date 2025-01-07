@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from web_app.db.models import User, Page, Access
-from web_app.db.database import get_db_connection
+from backend.db.models import User, Page, Access
+from backend.db.database import get_db_connection
 
 
 class UserDAO:
@@ -15,7 +15,13 @@ class UserDAO:
         return result.inserted_id
 
     def find_user_by_name(self, name: str):
-        user_data = self.collection.find_one({"name": name})
+        user_data = self.collection.find_one({"user_name": name})
+        if user_data:
+            return User.from_dict(user_data)
+        return None
+
+    def find_user_by_email(self, email: str):
+        user_data = self.collection.find_one({"email": email})
         if user_data:
             return User.from_dict(user_data)
         return None
@@ -78,8 +84,8 @@ class UserDAO:
         return result.modified_count > 0
 
     def get_count_users(self):
-        results = self.collection.find()
-        return len(results)
+        results = self.collection.count_documents({})
+        return int(results)
 
 
 class PageDao:

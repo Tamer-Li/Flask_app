@@ -13,7 +13,7 @@ services:
       - my_network
 
   web:
-    build: ./backend
+    build: ./app
     container_name: my-flask-app
     ports:
       - "5000:5000"

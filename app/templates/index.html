@@ -1,0 +1,16 @@
+{% extends "base_index.html" %}
+
+{% block title_index %}El Arch{% endblock %}
+
+{% block content_index %}
+<main>
+    <div class="container text-center"><h1>El Arch</h1></div>
+    <form method="GET" action="{{ url_for('auth.login') }}">
+        <button class="btn btn-primary w-100 py-2" type="submit">Авторизоваться</button>
+    </form>
+    <br>
+    <form method="GET" action="{{ url_for('auth.register') }}">
+        <button class="btn btn-primary w-100 py-2" type="submit">Зарегистрироваться</button>
+    </form>
+</main>
+{% endblock %}

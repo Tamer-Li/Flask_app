@@ -1,0 +1,46 @@
+{% extends "base_index.html" %}
+
+{% block title_index %}Авторизация{% endblock %}
+
+{% block content_index %}
+<main class="form-signin">
+    <form method="POST" action="{{ url_for('auth.login') }}">
+        <div class="container text-center">
+            <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
+        </div>
+
+        <div class="form-floating">
+            <input type="email" class="form-control" id="email" name="email" placeholder="почта@mail.ru">
+            <label for="email">Почта</label>
+        </div>
+
+        <br>
+
+        <div class="form-floating">
+            <input type="password" class="form-control" id="password" name="password"
+                   placeholder="Пароль">
+            <label for="password">Пароль</label>
+        </div>
+
+        <br>
+
+
+        <button class="btn btn-primary w-100 py-2" type="submit">Войти</button>
+        <a href="/">Назад</a>
+
+        <div class="container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </div>
+    </form>
+</main>
+{% endblock %}

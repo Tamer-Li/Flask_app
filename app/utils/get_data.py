@@ -1,6 +1,3 @@
-import base64
-from typing import List
-
 from app.database import db
 from app.models.user import User
 from app.models.page import Page
@@ -57,7 +54,17 @@ def get_my_pages(user_id: int):
     return view_pages
 
 
-def get_avatar_base64(avatar_data):
-    if avatar_data:
-        return base64.b64encode(avatar_data).decode('utf-8')
+def get_view_page(page_id: int) -> dict | None:
+    view_page = db.pages.find_one({'page_id': page_id})
+
+    page = Page(**view_page)
+    if not page.files:
+        page.files = get_page_image()
+
+    if page:
+        new_page = page.to_dict()
+        owner = db.users.find_one({'user_id': page.owner_id})
+        user = User(**owner)
+        new_page['owner_id'] = user.user_name
+        return new_page
     return None

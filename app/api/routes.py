@@ -23,8 +23,6 @@ def users():
 @routes_bp.route('/mypages')
 def my_pages():
     my_pages_list = get_my_pages(session.get('user_id'))
-    print(session.get('user_id'))
-    print(len(my_pages_list))
     return render_template('pages/my_pages.html', pages=my_pages_list)
 
 
@@ -67,8 +65,11 @@ def profile():
     if not user:
         return redirect(url_for('auth.login'))
 
+    avatar_base64: str
     if not user.avatar:
         avatar_base64 = get_profile_image()
+    else:
+        avatar_base64 = user.avatar
 
     if request.method == 'POST':
         form_type = request.form['form_type']
@@ -105,7 +106,6 @@ def profile():
             if 'avatar' in request.files:
                 file = request.files['avatar']
                 if file.filename != '':
-
                     if save_files(file, user):
                         flash('Аватарка успешно обновлена!', 'success')
                     else:

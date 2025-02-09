@@ -1,9 +1,16 @@
 import os
+import base64
 
 from werkzeug.utils import secure_filename
 
 from app.config import config
 from app.database import db
+
+
+def get_avatar_base64(avatar_data):
+    if avatar_data:
+        return base64.b64encode(avatar_data).decode('utf-8')
+    return None
 
 
 def save_files(file, user):
@@ -13,7 +20,7 @@ def save_files(file, user):
 
     with open(file_path, 'rb') as image_file:
         avatar_data = image_file.read()
-    user.avatar = avatar_data
+    user.avatar = get_avatar_base64(avatar_data)
     db.users.update_one({'user_id': user.user_id}, {'$set': {'avatar': user.avatar}})
 
     os.remove(file_path)

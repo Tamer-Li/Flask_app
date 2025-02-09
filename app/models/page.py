@@ -13,3 +13,15 @@ class Page:
     keywords: Optional[str] = None
     body: Optional[str] = None
     files: Optional[List[bytes]] = None
+
+    def to_dict(self) -> dict:
+        return {
+            "page_id": self.page_id,
+            "owner_id": self.owner_id,
+            "tag": self.tag,
+            "title": self.title,
+            "description": self.description,
+            "keywords": self.keywords,
+            "body": self.body,
+            "files": self.files,
+        }

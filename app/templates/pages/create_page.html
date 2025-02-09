@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Создание страницы{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1 class="text-center mb-4">Создать новую страницу</h1>
+    <form action="{{ url_for('routes.create_page') }}" method="POST" enctype="multipart/form-data">
+
+        <!-- Поле для tag -->
+        <div class="mb-3">
+            <label for="tag" class="form-label">Тег</label>
+            <input type="text" class="form-control" id="tag" name="tag" required>
+        </div>
+
+        <!-- Поле для title -->
+        <div class="mb-3">
+            <label for="title" class="form-label">Заголовок</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+
+        <!-- Поле для description -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Описание</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+
+        <!-- Поле для keywords -->
+        <div class="mb-3">
+            <label for="keywords" class="form-label">Ключевые слова</label>
+            <input type="text" class="form-control" id="keywords" name="keywords">
+        </div>
+
+        <!-- Поле для body -->
+        <div class="mb-3">
+            <label for="body" class="form-label">Текст страницы</label>
+            <textarea class="form-control" id="body" name="body" rows="5"></textarea>
+        </div>
+
+        <!-- Поле для files -->
+        <div class="mb-3">
+            <label for="files" class="form-label">Приложенные файлы</label>
+            <input type="file" class="form-control" id="files" name="files" multiple>
+        </div>
+
+        <!-- Кнопка отправки формы -->
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Создать страницу</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

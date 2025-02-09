@@ -18,6 +18,9 @@ class BaseConfig:
     ADMIN_PASSWORD: str = os.getenv('ADMIN_PASSWORD', 'admin')
     ADMIN_EMAIL: str = os.getenv('ADMIN_EMAIL', 'admin@mail.ru')
     DEBUG: bool = True
+    UPLOAD_FOLDER: str = os.getenv('UPLOAD_FOLDER', 'static/avatars')
+    AVATAR_PLACEHOLDER: str = os.getenv('AVATAR_PLACEHOLDER', 'static/avatars/avatar.txt')
+    PLACEHOLDER: str = os.getenv('PLACEHOLDER', 'static/images/placeholder.txt')
 
 
 config = BaseConfig()

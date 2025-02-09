@@ -1,0 +1,75 @@
+<!-- templates/profile.html -->
+{% extends "base.html" %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<h1>Профиль пользователя</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{ category }}" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Изменить профиль</h2>
+        <form method="post">
+            <input type="hidden" name="form_type" value="profile">
+            <div class="mb-3">
+                <label for="user_name" class="form-label">Имя пользователя</label>
+                <input type="text" class="form-control" id="user_name" name="user_name" value="{{ user.user_name }}">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Изменить пароль</h2>
+        <form method="post">
+            <input type="hidden" name="form_type" value="password">
+            <div class="mb-3">
+                <label for="old_password" class="form-label">Старый пароль</label>
+                <input type="password" class="form-control" id="old_password" name="old_password">
+            </div>
+            <div class="mb-3">
+                <label for="new_password" class="form-label">Новый пароль</label>
+                <input type="password" class="form-control" id="new_password" name="new_password">
+            </div>
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label">Подтвердите новый пароль</label>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+            </div>
+            <button type="submit" class="btn btn-primary">Изменить пароль</button>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Изменить аватарку</h2>
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" name="form_type" value="avatar">
+            <div class="mb-3">
+                {% if avatar_base64 %}
+                <img src="data:image/png;base64,{{ avatar_base64 }}" alt="Avatar" class="img-thumbnail" width="100">
+                {% else %}
+                <p>Аватарка отсутствует</p>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                <label for="avatar" class="form-label">Загрузить новую аватарку</label>
+                <input class="form-control" type="file" id="avatar" name="avatar">
+            </div>
+            <button type="submit" class="btn btn-primary">Загрузить аватарку</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

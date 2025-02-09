@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 
-{% block title %}Пользователи{% endblock %}
+{% block title %}Страницы{% endblock %}
 
 {% block content %}
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
-            {% for user in users %}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for page in pages %}
             <div class="col">
                 <div class="card h-100">
-                    <img src="data:image/png;base64,{{ user.avatar }}" class="card-img-top" alt="image">
+                    <img src="data:image/png;base64,{{ page.files }}" class="card-img-top" alt="image">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">{{ user.user_name }}</h5>
+                        <h5 class="card-title">{{ page.title }}</h5>
+                        <p class="card-text">{{ page.description }}</p>
                         <a href="#" class="btn btn-primary mt-auto">Перейти куда-нибудь</a>
                     </div>
                 </div>

@@ -51,3 +51,13 @@ CMD ["apachectl", "-D", "FOREGROUND"]
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
+
+<VirtualHost *:80>
+    ServerName localhost
+
+    ProxyPass / unix:/path_to_your_app/flaskapp.sock|http://localhost/
+    ProxyPassReverse / unix:/path_to_your_app/flaskapp.sock|http://localhost/
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>

@@ -13,7 +13,13 @@
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ page.title }}</h5>
                         <p class="card-text">{{ page.description }}</p>
+
+                        {% if admin %}
                         <a href="/page/{{ page.page_id }}" class="btn btn-primary mt-auto">Подробнее</a>
+                        <form method="POST" action="{{ url_for('page_routes.delete_page', page_id=page.page_id) }}">
+                            <button type="submit" class="btn btn-danger mt-2">Удалить</button>
+                        </form>
+                        {% endif %}
                     </div>
                 </div>
             </div>

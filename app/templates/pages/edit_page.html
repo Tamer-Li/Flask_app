@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Редактирование страницы{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1 class="text-center mb-4">Редактировать страницу</h1>
+    <form action="{{ url_for('page_routes.change_page', page_id=page.page_id) }}" method="POST"
+        enctype="multipart/form-data">
+        <!-- Скрытое поле для передачи ID страницы -->
+        <input type="hidden" name="page_id" value="{{ page.id }}">
+
+        <!-- Поле для list -->
+        <div class="mb-3">
+            <label for="tag" class="form-label">Список владельцев</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ access.list }}" required>
+            <label for="tag" class="form-label">Уровни доступа</label>
+            <input type="text" class="form-control" id="user_privilege" name="user_privilege"
+                value="{{ access.privilege }}" required>
+        </div>
+
+        <!-- Поле для tag -->
+        <div class="mb-3">
+            <label for="tag" class="form-label">Тег</label>
+            <input type="text" class="form-control" id="tag" name="tag" value="{{ page.tag }}" required>
+        </div>
+
+        <!-- Поле для title -->
+        <div class="mb-3">
+            <label for="title" class="form-label">Заголовок</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ page.title }}" required>
+        </div>
+
+        <!-- Поле для description -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Описание</label>
+            <textarea class="form-control" id="description" name="description"
+                rows="3">{{ page.description }}</textarea>
+        </div>
+
+        <!-- Поле для keywords -->
+        <div class="mb-3">
+            <label for="keywords" class="form-label">Ключевые слова</label>
+            <input type="text" class="form-control" id="keywords" name="keywords" value="{{ page.keywords }}">
+        </div>
+
+        <!-- Поле для body -->
+        <div class="mb-3">
+            <label for="body" class="form-label">Текст страницы</label>
+            <textarea class="form-control" id="body" name="body" rows="5">{{ page.body }}</textarea>
+        </div>
+
+        <!-- Поле для прикрепленных файлов -->
+        <div class="mb-3">
+            <label for="files" class="form-label">Приложенные файлы</label>
+            <input type="file" class="form-control" id="files" name="files" multiple>
+            <!-- Отображение текущих файлов (если есть) -->
+            {% if page.files %}
+            <div class="mt-2">
+                <strong>Текущие файлы:</strong>
+                <div class="col-md-4">
+                    <img src="data:image/png;base64,{{ page.files }}" alt="Image" class="img-fluid">
+                </div>
+                <a href="{{ url_for('page_routes.delete_page', page_id=page.page_id) }}">Удалить</a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Кнопка отправки формы -->
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

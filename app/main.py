@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 
 from config import config
+from database import load_test_json
 from app.api.routes import routes_bp
 from app.api.auth_routes import auth_bp
 from app.api.page_routes import page_routes
@@ -24,6 +25,9 @@ app.register_blueprint(page_routes, url_prefix='/page')
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
+
+
+load_test_json()
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session, request, redirect, url_for, flash
 
-from app.utils.get_data import get_pages, get_users, get_my_pages, get_current_user
+from app.utils.get_data import get_pages, get_users, get_my_pages, get_current_user, is_admin_user
 from app.utils.save_collections import save_pages, save_user
 from app.utils.files_edit import save_files, get_profile_image
 
@@ -10,8 +10,11 @@ routes_bp = Blueprint('routes', __name__)
 @routes_bp.route('/')
 def pages():
     pages_list = get_pages()
-
-    return render_template('pages/pages_view_list.html', pages=pages_list)
+    admin: bool = False
+    user_id = int(session['user_id'])
+    if is_admin_user(user_id):
+        admin = True
+    return render_template('pages/pages_view_list.html', pages=pages_list, admin=admin)
 
 
 @routes_bp.route('/users')

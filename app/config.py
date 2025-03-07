@@ -14,13 +14,12 @@ class BaseConfig:
     HASH_ALGORITHM: str = os.getenv('HASH_ALGORITHM', 'sha256')
     HOST: str = os.getenv('HOST', '0.0.0.0')
     PORT: int = int(os.getenv('PORT', '5000'))
+    DEBUG: bool = True
+    UPLOAD_FOLDER: str = os.getenv('UPLOAD_FOLDER', 'app/static/avatars')
+    AVATAR_PLACEHOLDER: str = os.getenv('AVATAR_PLACEHOLDER', 'app/static/avatars/avatar.txt')
+    PLACEHOLDER: str = os.getenv('PLACEHOLDER', 'app/static/images/placeholder.txt')
     ADMIN_NAME: str = os.getenv('ADMIN_NAME', 'admin')
     ADMIN_PASSWORD: str = os.getenv('ADMIN_PASSWORD', 'admin')
-    ADMIN_EMAIL: str = os.getenv('ADMIN_EMAIL', 'admin@mail.ru')
-    DEBUG: bool = True
-    UPLOAD_FOLDER: str = os.getenv('UPLOAD_FOLDER', 'static/avatars')
-    AVATAR_PLACEHOLDER: str = os.getenv('AVATAR_PLACEHOLDER', 'static/avatars/avatar.txt')
-    PLACEHOLDER: str = os.getenv('PLACEHOLDER', 'static/images/placeholder.txt')
 
 
 config = BaseConfig()

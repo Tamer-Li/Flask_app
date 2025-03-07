@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, flash, session,
 
 from app.models.user import User
 from app.database import db
+from app.config import config
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -15,6 +16,10 @@ def login():
         if not email or not password:
             flash('Заполните все поля', 'danger')
             return render_template('auth/login.html')
+        
+        if email == config.ADMIN_NAME and password == config.ADMIN_PASSWORD:
+            flash('Вы вошли в систему как администратор!', 'success')
+            return redirect(url_for('routes.pages'))
 
         user_data = db.users.find_one({'email': email})
         if user_data:

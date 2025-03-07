@@ -1,0 +1,97 @@
+[{
+  "_id": {
+    "$oid": "67a642f87500cd72dfe64244"
+  },
+  "acl_id": 1,
+  "page_id": 1,
+  "privilege": "Read",
+  "list": [
+    1,
+    2,
+    3
+  ]
+},
+{
+  "_id": {
+    "$oid": "67a642f87500cd72dfe64245"
+  },
+  "acl_id": 2,
+  "page_id": 1,
+  "privilege": "Write",
+  "list": [
+    1
+  ]
+},
+{
+  "_id": {
+    "$oid": "67a642f87500cd72dfe64246"
+  },
+  "acl_id": 3,
+  "page_id": 2,
+  "privilege": "Read",
+  "list": [
+    1,
+    2,
+    3
+  ]
+},
+{
+  "_id": {
+    "$oid": "67a642f87500cd72dfe64247"
+  },
+  "acl_id": 4,
+  "page_id": 2,
+  "privilege": "Write",
+  "list": [
+    2
+  ]
+},
+{
+  "_id": {
+    "$oid": "67a642f87500cd72dfe64248"
+  },
+  "acl_id": 5,
+  "page_id": 3,
+  "privilege": "Read",
+  "list": [
+    1,
+    2,
+    3
+  ]
+},
+{
+  "_id": {
+    "$oid": "67a642f87500cd72dfe64249"
+  },
+  "acl_id": 6,
+  "page_id": 3,
+  "privilege": "Write",
+  "list": [
+    3
+  ]
+},
+{
+  "_id": {
+    "$oid": "67a642f87500cd72dfe6424a"
+  },
+  "acl_id": 7,
+  "page_id": 4,
+  "privilege": "Read",
+  "list": [
+    1,
+    2,
+    3,
+    4
+  ]
+},
+{
+  "_id": {
+    "$oid": "67a642f87500cd72dfe6424b"
+  },
+  "acl_id": 8,
+  "page_id": 4,
+  "privilege": "Write",
+  "list": [
+    4
+  ]
+}]

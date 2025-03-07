@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "67a642e37500cd72dfe64240"
+  },
+  "page_id": 1,
+  "owner_id": 1,
+  "tag": "about-us",
+  "title": "О нас",
+  "description": "Страница с информацией о компании",
+  "keywords": "о нас, компания, информация",
+  "body": "Это текстовая страница о нашей компании.",
+  "files": null
+},
+{
+  "_id": {
+    "$oid": "67a642e37500cd72dfe64241"
+  },
+  "page_id": 2,
+  "owner_id": 2,
+  "tag": "contact",
+  "title": "Контакты",
+  "description": "Страница с контактной информацией",
+  "keywords": "контакты, связь",
+  "body": "Свяжитесь с нами по указанным контактам.",
+  "files": null
+},
+{
+  "_id": {
+    "$oid": "67a642e37500cd72dfe64242"
+  },
+  "page_id": 3,
+  "owner_id": 3,
+  "tag": "news",
+  "title": "Новости",
+  "description": "Страница с последними новостями",
+  "keywords": "новости, события",
+  "body": "Здесь вы найдете последние новости нашей компании.",
+  "files": null
+},
+{
+  "_id": {
+    "$oid": "67a8edc48fa97cf4015c9aa4"
+  },
+  "page_id": 4,
+  "owner_id": 11,
+  "tag": "Тест",
+  "title": "test ",
+  "description": "description",
+  "keywords": "test",
+  "body": "hello",
+  "files": null
+}]

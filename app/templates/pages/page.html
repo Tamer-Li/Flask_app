@@ -38,6 +38,15 @@
         <div class="card-footer text-muted">
             ID страницы: {{ page.page_id }}
         </div>
+
+        {% if admin %}
+        <form method="POST" action="{{ url_for('page_routes.delete_page', page_id=page.page_id) }}">
+            <button type="submit" class="btn btn-danger mt-2">Удалить</button>
+        </form>
+        <form method="GET" action="{{ url_for('page_routes.change_page', page_id=page.page_id) }}">
+            <button type="submit" class="btn btn-primary">Редактировать</button>
+        </form>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

@@ -1,6 +1,7 @@
 from app.database import db
 from app.models.user import User
 from app.models.page import Page
+from app.models.access import Access
 
 from app.utils.files_edit import get_page_image, get_profile_image
 
@@ -68,3 +69,22 @@ def get_view_page(page_id: int) -> dict | None:
         new_page['owner_id'] = user.user_name
         return new_page
     return None
+
+
+def is_admin_user(user_id: int) -> bool:
+    unknown_user = db.users.find_one({'user_id': user_id})
+
+    user = User(**unknown_user)
+
+    if user.account_type == 1:
+        return True
+
+    return False
+
+def get_access(page_id: int) -> bool:
+    access = db.access.find_one({'page_id': page_id})
+    if access is None:
+        return []
+    print(access)
+    data = Access(**access)
+    return data
